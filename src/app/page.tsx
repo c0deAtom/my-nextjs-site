@@ -18,7 +18,7 @@ export default function Home() {
       </div>
 
  
-      <div className="bg-white shadow-lg rounded-xl p-6">
+      <div className="bg-white shadow-lg rounded-xl p-5">
       
       </div>
 
