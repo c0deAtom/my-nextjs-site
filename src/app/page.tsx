@@ -1,7 +1,5 @@
 "use client"
 
-import UserReg from "./component/UserReg"
-import AskQues from "./component/AskQues"
 
 
 export default function Home() {
@@ -15,12 +13,12 @@ export default function Home() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
     
       <div className="bg-white shadow-lg rounded-xl p-6">
-        <UserReg />
+
       </div>
 
  
       <div className="bg-white shadow-lg rounded-xl p-5">
-      <AskQues/>
+   
       </div>
 
     
