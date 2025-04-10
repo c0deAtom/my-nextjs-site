@@ -128,7 +128,7 @@ const UserReg = () => {
                   key={index}
                   className="bg-green-100 p-3 rounded-lg shadow-sm text-sm"
                 >
-                  <span className="text-red-500 font-semibold">Name:</span> {student.name} <br />
+                  <span className="text-red-500 font-semibold">Nadme:</span> {student.name} <br />
                   <span className="text-red-500 font-semibold">About:</span> {student.about} <br />
                   <span className="text-red-500 font-semibold">Age:</span> {student.age} <br/>
                   <span className="text-red-500 font-semibold">Mbti:</span> {student.mbti}
