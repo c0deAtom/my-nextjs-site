@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import MbtiQuiz from "./UserPage";
 
 export default function UserIntro() {
   const [name, setName] = useState("");
@@ -28,10 +29,13 @@ export default function UserIntro() {
 
   if (submitted) {
     return (
+     <>
       <div className="bg-white shadow-md rounded-xl p-6 max-w-lg w-full">
         <h2 className="text-2xl font-semibold text-sky-700 mb-2">Welcome, {name}!</h2>
-        <p className="text-sky-600">{about}</p>
+        
+        <MbtiQuiz />
       </div>
+      </>
     );
   }
 

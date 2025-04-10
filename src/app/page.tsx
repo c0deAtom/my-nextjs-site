@@ -3,6 +3,7 @@
 
 import UserIntro from "./component/Front"
 
+
 export default function Home() {
 
 
@@ -12,6 +13,7 @@ export default function Home() {
     <div className="text-center max-w-2xl">
     <div>
 <UserIntro />
+
 
     </div>
       
