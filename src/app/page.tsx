@@ -1,10 +1,7 @@
-'use client'
+"use client"
 
-import Image from "next/image";
-import UserReg from './component/UserReg'
-import { ReactNode } from 'react';
-import AskQues from "./component/AskQues";
-import HealthStatsPage from './component/Mainn'  
+import UserReg from "./component/UserReg"
+
 
 export default function Home() {
 
@@ -22,7 +19,7 @@ export default function Home() {
 
  
       <div className="bg-white shadow-lg rounded-xl p-6">
-        <AskQues />
+      
       </div>
 
     

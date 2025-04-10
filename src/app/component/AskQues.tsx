@@ -1,16 +1,16 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 const questions = [
-  { id: 'EI', text: 'Do you prefer group activities over spending time alone?' },
-  { id: 'SN', text: 'Do you rely more on facts than ideas?' },
-  { id: 'TF', text: 'Do you make decisions based on logic more than emotions?' },
-  { id: 'JP', text: 'Do you prefer planned routines over spontaneity?' },
-  { id: 'EI', text: 'Do you enjoy being the center of attention?' },
-  { id: 'SN', text: 'Do you focus more on present details than future possibilities?' },
-  { id: 'TF', text: 'Is fairness more important than compassion?' },
-  { id: 'JP', text: 'Do you like to have things decided rather than go with the flow?' }
+  { id: "EI", text: "Do you prefer group activities over spending time alone?" },
+  { id: "SN", text: "Do you rely more on facts than ideas?" },
+  { id: "TF", text: "Do you make decisions based on logic more than emotions?" },
+  { id: "JP", text: "Do you prefer planned routines over spontaneity?" },
+  { id: "EI", text: "Do you enjoy being the center of attention?" },
+  { id: "SN", text: "Do you focus more on present details than future possibilities?" },
+  { id: "TF", text: "Is fairness more important than compassion?" },
+  { id: "JP", text: "Do you like to have things decided rather than go with the flow?" }
 ]
 
 const MBTIQuestionnaire = () => {
@@ -19,7 +19,7 @@ const MBTIQuestionnaire = () => {
   const [mbti, setMbti] = useState<string | null>(null)
 
   useEffect(() => {
-    const saved = localStorage.getItem('mbtiAnswers')
+    const saved = localStorage.getItem("mbtiAnswers")
     if (saved) {
       const parsed = JSON.parse(saved)
       setAnswers(parsed)
@@ -28,7 +28,7 @@ const MBTIQuestionnaire = () => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('mbtiAnswers', JSON.stringify(answers))
+    localStorage.setItem("mbtiAnswers", JSON.stringify(answers))
     if (Object.keys(answers).length === questions.length) {
       calculateMBTI()
     }
@@ -45,24 +45,24 @@ const MBTIQuestionnaire = () => {
     const traits = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 }
     
 
-    questions.forEach((q, index) => {
+    questions.forEach((q: any, index: any) => {
       const choice = answers[index]
-      if (choice === 'yes') traits[q.id[0]]++
-      else if (choice === 'no') traits[q.id[1]]++
+      if (choice === "yes") traits[q.id[0]]++
+      else if (choice === "no") traits[q.id[1]]++
       // neutral does not count toward either
     })
 
     const result =
-      (traits.E >= traits.I ? 'E' : 'I') +
-      (traits.S >= traits.N ? 'S' : 'N') +
-      (traits.T >= traits.F ? 'T' : 'F') +
-      (traits.J >= traits.P ? 'J' : 'P')
+      (traits.E >= traits.I ? "E" : "I") +
+      (traits.S >= traits.N ? "S" : "N") +
+      (traits.T >= traits.F ? "T" : "F") +
+      (traits.J >= traits.P ? "J" : "P")
 
      
 
     setMbti(result)
 
-    const oldData = JSON.parse(localStorage.getItem('studentsList') || '[]')
+    const oldData = JSON.parse(localStorage.getItem("studentsList") || "[]")
     
 
     
@@ -88,7 +88,7 @@ const MBTIQuestionnaire = () => {
   }
 
   const resetForm = () => {
-    localStorage.removeItem('mbtiAnswers')
+    localStorage.removeItem("mbtiAnswers")
     setAnswers({})
     setMbti(null)
     setCurrentIndex(0)
@@ -105,7 +105,7 @@ const MBTIQuestionnaire = () => {
           </p>
 
           <div className="flex justify-center gap-4">
-            {['yes', 'neutral', 'no'].map((choice) => (
+            {["yes", "neutral", "no"].map((choice) => (
               <button
                 key={choice}
                 onClick={() => handleAnswer(choice)}
