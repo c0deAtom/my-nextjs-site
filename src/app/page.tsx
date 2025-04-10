@@ -1,6 +1,7 @@
 "use client"
 
 import UserReg from "./component/UserReg"
+import AskQues from "./component/AskQues"
 
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
 
  
       <div className="bg-white shadow-lg rounded-xl p-5">
-      
+      <AskQues/>
       </div>
 
     

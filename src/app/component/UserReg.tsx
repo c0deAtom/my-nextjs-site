@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState, useEffect, ChangeEvent } from "react"
 
@@ -11,10 +11,10 @@ interface Student {
 
 const UserReg = () => {
   const [formData, setFormData] = useState<Student>({
-    name: '',
-    about: '',
+    name: "",
+    about: "",
     age: 0,
-    mbti: ''
+    mbti: ""
   })
 
   const [students, setStudents] = useState<Student[]>([])
@@ -22,33 +22,33 @@ const UserReg = () => {
   const [showList, setShowList] = useState<boolean>(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem('studentsList')
+    const stored = localStorage.getItem("studentsList")
     if (stored) {
       setStudents(JSON.parse(stored))
     }
   }, [])
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<any>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'age' ? Number(value) : value
+      [name]: name === "age" ? Number(value) : value
     }))
   }
 
   const handleBtn = (btn: string) => {
     if (btn === "Registor") {
-      const oldData = JSON.parse(localStorage.getItem('studentsList') || '[]')
+      const oldData = JSON.parse(localStorage.getItem("studentsList") || "[]")
       const updatedList = [...oldData, formData]
 
       localStorage.setItem("studentsList", JSON.stringify(updatedList))
       setStudents(updatedList)
 
-      setFormData({ name: '', about: '', age: 0, mbti: '' })
+      setFormData({ name: "", about: "", age: 0, mbti: "" })
       setMssg("User Registered Successfully")
       setShowList(false)
     } else if (btn === "List") {
-      const stored = localStorage.getItem('studentsList')
+      const stored = localStorage.getItem("studentsList")
       if (stored) {
         setStudents(JSON.parse(stored))
         setShowList(true)
@@ -96,7 +96,7 @@ const UserReg = () => {
           <label className="block text-gray-700 font-semibold">About</label>
           <textarea
             name="about"
-            type="about"
+           
             className="w-full p-2 border rounded-lg text-red-500"
             placeholder="Only Truths"
             value={formData.about}
@@ -126,7 +126,7 @@ const UserReg = () => {
               {students.map((student, index) => (
                 <li
                   key={index}
-                  className="bg-gray-100 p-3 rounded-lg shadow-sm text-sm"
+                  className="bg-green-100 p-3 rounded-lg shadow-sm text-sm"
                 >
                   <span className="text-red-500 font-semibold">Name:</span> {student.name} <br />
                   <span className="text-red-500 font-semibold">About:</span> {student.about} <br />
