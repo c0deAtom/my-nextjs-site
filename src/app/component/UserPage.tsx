@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HabitsPage from "./HabbitPage"
+
 import CardManager from "../habits/page";
 
 type Question = {
