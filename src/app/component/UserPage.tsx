@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import HabitsPage from "./HabbitPage"
+import CardManager from "../habits/page";
 
 type Question = {
   question: string;
@@ -73,18 +75,14 @@ export default function MbtiQuiz() {
 
   if (result) {
     return (
-      <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-lg text-center">
-        <h2 className="text-2xl font-semibold text-sky-800 mb-2">Ok Mr. {result} Do you agree their you are ? </h2>
-        <div className="text-4xl font-bold text-sky-600 mb-4">{result}</div>
-        <p className="text-sky-700">Thanks for completing the quiz!</p>
-      </div>
+      <CardManager />
     );
   }
 
   const current = questions[step];
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-lg">
+    <div className="w-full mx-auto bg-gray-800 p-6  shadow-lg">
       <h2 className="text-xl font-semibold text-sky-800 mb-4">
         Question {step + 1} of {questions.length}
       </h2>

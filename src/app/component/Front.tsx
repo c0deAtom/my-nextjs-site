@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import MbtiQuiz from "./UserPage";
 
+
 export default function UserIntro() {
   const [name, setName] = useState("");
   const [about, setAbout] = useState("");
@@ -24,23 +25,25 @@ export default function UserIntro() {
       localStorage.setItem("userName", name);
       localStorage.setItem("userAbout", about);
       setSubmitted(true);
+     
+     
     }
   };
 
   if (submitted) {
     return (
      <>
-      <div className="bg-white shadow-md rounded-xl p-6 max-w-lg w-full">
-        <h2 className="text-2xl font-semibold text-sky-700 mb-2">Welcome, {name}!</h2>
+     
+       
         
         <MbtiQuiz />
-      </div>
+     
       </>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-xl p-6 max-w-lg w-full">
+    <form onSubmit={handleSubmit} className="bg-gray-800 shadow-md  p-6  w-full">
       <h2 className="text-2xl font-semibold text-sky-800 mb-4">Tell us about yourself</h2>
 
       <label className="block text-sky-700 mb-2">Name</label>
