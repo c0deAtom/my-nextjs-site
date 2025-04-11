@@ -28,7 +28,7 @@ export default function CardManager() {
   };
 
   const addCard = () => {
-    if (!title.trim() || !details.trim()) return;
+    if (!title.trim() && !details.trim()) return;
 
     const newCard: Card = {
       id: Date.now(),
@@ -46,9 +46,13 @@ export default function CardManager() {
   };
 
   const deleteCard = (id: number) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this habit?");
+    if (!confirmDelete) return;
+  
     const updated = cards.filter((card) => card.id !== id);
     saveCards(updated);
   };
+  
 
   const incrementCount = (id: number, type: "green" | "red") => {
     const updated = cards.map((card) =>
@@ -67,34 +71,34 @@ export default function CardManager() {
     <>
      <Navbar />
   
-    <div className="w-screen h-screen flex flex-col bg-gray-800 p-4">
+    <div className="w-screen h-screen flex flex-col bg-gray-800 p-4 ">
      
       {/* Add Button & Form */}
-      <div className="mb-4">
+      <div className="mb-4 flex">
         <button
-          className="text-xl bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="text-xl bg-green-200 text-black px-4 py-2 rounded hover:bg-green-300"
           onClick={() => setShowForm(!showForm)}
         >
           ➕ Add Habit
         </button>
 
         {showForm && (
-          <div className="mt-4 bg-white p-4 rounded shadow max-w-md">
+          <div className="mx-10 text-xl bg-green-200 h-11 text-white px-1 py-1 rounded hover:bg-green-300 flex gap-5 items-center">
             <input
               type="text"
               placeholder="Habit Title"
-              className="block w-full p-2 mb-2 border rounded text-black"
+              className="block w-full  h-8 my- px-4 py-2 border rounded text-black"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <textarea
+            <input
               placeholder="Details"
-              className="block w-full p-2 mb-2 border rounded text-black"
+              className="block w-full  h-8 px-4 py-2 border rounded text-black"
               value={details}
               onChange={(e) => setDetails(e.target.value)}
             />
             <button
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-blue-600 text-white h-9 px-4 py-1 rounded hover:bg-blue-700"
               onClick={addCard}
             >
               Save
@@ -117,7 +121,7 @@ export default function CardManager() {
               >
                 ❌
               </button>
-              <div>
+              <div className="flex items-center justify-center flex-col">
                 <h3 className="text-lg font-bold text-black">{card.title}</h3>
                 <p className="text-sm text-gray-600">{card.details}</p>
               </div>
