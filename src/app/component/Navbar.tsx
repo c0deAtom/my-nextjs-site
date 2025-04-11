@@ -9,9 +9,9 @@ export default function Navbar() {
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedName = localStorage.getItem("userName");
+    const storedName = JSON.parse(localStorage.getItem("userData"));
     if (storedName) {
-      setUserName(storedName);
+      setUserName(storedName.name);
     }
   }, []);
 

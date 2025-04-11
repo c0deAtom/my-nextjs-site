@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "../component/Navbar";
 
 type Card = {
   id: number;
@@ -63,7 +64,11 @@ export default function CardManager() {
   };
 
   return (
+    <>
+     <Navbar />
+  
     <div className="w-screen h-screen flex flex-col bg-gray-800 p-4">
+     
       {/* Add Button & Form */}
       <div className="mb-4">
         <button
@@ -147,5 +152,6 @@ export default function CardManager() {
         </div>
       </div>
     </div>
+      </>
   );
 }
