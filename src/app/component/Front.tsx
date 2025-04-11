@@ -77,9 +77,9 @@ export default function Onboarding() {
   const current = questions[currentIndex];
 
   return (
-    <div className="h-screen w-screen bg-black text-white flex items-center justify-center text-center px-4">
+    <div className="h-screen w-screen bg-black text-white flex  justify-center text-center px-4">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-mono whitespace-pre-wrap mb-4">{typedText}|</h1>
+        <h1 className="text-2xl sm:text-3xl font-mono whitespace-pre-wrap mb-4 pt-60">{typedText}|</h1>
 
         {showInput && current.type === "text" && (
           <form
