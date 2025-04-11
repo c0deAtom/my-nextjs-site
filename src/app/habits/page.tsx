@@ -62,13 +62,13 @@ export default function CardManager() {
           <input
             type="text"
             placeholder="Title"
-            className="block w-full p-2 mb-2 border rounded"
+            className="block w-full p-2 mb-2 border rounded text-black"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
             placeholder="Details"
-            className="block w-full p-2 mb-2 border rounded"
+            className="block w-full p-2 mb-2 border rounded text-black"
             value={details}
             onChange={(e) => setDetails(e.target.value)}
           />
@@ -86,7 +86,7 @@ export default function CardManager() {
         {cards.map((card) => (
           <div key={card.id} className="border p-4 rounded shadow relative w-40 h-40 ">
             <h3 className="text-lg font-semibold">{card.title}</h3>
-            <p className="text-sm text-gray-700">{card.details}</p>
+            <p className="text-sm text-gray-">{card.details}</p>
             <button
               onClick={() => deleteCard(card.id)}
               className="absolute top-2 right-2 text-red-500 font-bold"

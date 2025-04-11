@@ -45,7 +45,7 @@ export default function HabitsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-gray-800 p-8">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">My Habits Tracker</h1>
 
       <div className="max-w-xl mx-auto mb-8 bg-white p-6 rounded-xl shadow">
@@ -54,7 +54,7 @@ export default function HabitsPage() {
           placeholder="Habit title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded text-red-400"
         />
         <textarea
           placeholder="Description (optional)"
@@ -73,8 +73,8 @@ export default function HabitsPage() {
       <div className="max-w-xl mx-auto grid gap-4">
         {habits.map((habit) => (
           <div key={habit.id} className="bg-white p-4 rounded-lg shadow border relative">
-            <h2 className="text-lg font-semibold text-gray-800">{habit.title}</h2>
-            {habit.description && <p className="text-gray-600">{habit.description}</p>}
+            <h2 className="text-lg font-semibold text-white">{habit.title}</h2>
+            {habit.description && <p className="text-Green">{habit.description}</p>}
             <button
               onClick={() => deleteHabit(habit.id)}
               className="absolute top-2 right-2 text-red-500 hover:text-red-700"

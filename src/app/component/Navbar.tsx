@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="w-full bg-blue-600 text-white py-3 px-6 shadow-md">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="text-xl font-bold">
-          <Link href="/">{userName? "Welcome  " + userName :"MyApp"}</Link>
+          <Link href="/">{userName? "Welcome  " + userName :"Welcome"}</Link>
         </div>
         <ul className="flex gap-4 text-sm">
           <li><Link href="/">Home</Link></li>
