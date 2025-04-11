@@ -9,9 +9,10 @@ export default function Navbar() {
   const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedName = JSON.parse(localStorage.getItem("userData"));
+    const storedName = (localStorage.getItem("userData"));
     if (storedName) {
-      setUserName(storedName.name);
+        const parsed = JSON.parse(storedName)
+      setUserName(parsed.name);
     }
   }, []);
 
@@ -24,7 +25,6 @@ export default function Navbar() {
         <ul className="flex gap-4 text-sm">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/habits">Habits</Link></li>
-          <li><Link href="/mbti">MBTI</Link></li>
           <li><Link href="/graph">Graph</Link></li>
         </ul>
       
