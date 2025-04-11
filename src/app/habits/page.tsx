@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-
 type Card = {
   id: number;
   title: string;
   details: string;
+  greenCount: number;
+  redCount: number;
 };
 
 export default function CardManager() {
@@ -16,22 +17,26 @@ export default function CardManager() {
   const [details, setDetails] = useState("");
 
   useEffect(() => {
-    const stored = localStorage.getItem("cards");
+    const stored = localStorage.getItem("habitCards");
     if (stored) setCards(JSON.parse(stored));
   }, []);
 
   const saveCards = (newCards: Card[]) => {
-    localStorage.setItem("cards", JSON.stringify(newCards));
     setCards(newCards);
+    localStorage.setItem("habitCards", JSON.stringify(newCards));
   };
 
   const addCard = () => {
-    if (!title || !details) return;
+    if (!title.trim() || !details.trim()) return;
+
     const newCard: Card = {
       id: Date.now(),
       title,
       details,
+      greenCount: 0,
+      redCount: 0,
     };
+
     const updated = [...cards, newCard];
     saveCards(updated);
     setTitle("");
@@ -44,59 +49,103 @@ export default function CardManager() {
     saveCards(updated);
   };
 
+  const incrementCount = (id: number, type: "green" | "red") => {
+    const updated = cards.map((card) =>
+      card.id === id
+        ? {
+            ...card,
+            greenCount: type === "green" ? card.greenCount + 1 : card.greenCount,
+            redCount: type === "red" ? card.redCount + 1 : card.redCount,
+          }
+        : card
+    );
+    saveCards(updated);
+  };
+
   return (
-    <>
-  
-    <div className="max-w-2xl mx-auto p-6 ">
-      {/* Add Card Button */}
-      <button
-        className="text-2xl font-bold bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4"
-        onClick={() => setShowForm(!showForm)}
-      >
-        ➕ Add Card
-      </button>
+    <div className="w-screen h-screen flex flex-col bg-gray-800 p-4">
+      {/* Add Button & Form */}
+      <div className="mb-4">
+        <button
+          className="text-xl bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          onClick={() => setShowForm(!showForm)}
+        >
+          ➕ Add Habit
+        </button>
 
-      {/* Form */}
-      {showForm && (
-        <div className="mb-6 bg-gray-100 p-4 rounded shadow">
-          <input
-            type="text"
-            placeholder="Title"
-            className="block w-full p-2 mb-2 border rounded text-black"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            placeholder="Details"
-            className="block w-full p-2 mb-2 border rounded text-black"
-            value={details}
-            onChange={(e) => setDetails(e.target.value)}
-          />
-          <button
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            onClick={addCard}
-          >
-            Save
-          </button>
-        </div>
-      )}
-
-      {/* Cards Display */}
-      <div className="flex space-x-4 overflow-x-auto p-4">
-        {cards.map((card) => (
-          <div key={card.id} className="border p-4 rounded shadow relative w-40 h-40 ">
-            <h3 className="text-lg font-semibold">{card.title}</h3>
-            <p className="text-sm text-gray-">{card.details}</p>
+        {showForm && (
+          <div className="mt-4 bg-white p-4 rounded shadow max-w-md">
+            <input
+              type="text"
+              placeholder="Habit Title"
+              className="block w-full p-2 mb-2 border rounded text-black"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Details"
+              className="block w-full p-2 mb-2 border rounded text-black"
+              value={details}
+              onChange={(e) => setDetails(e.target.value)}
+            />
             <button
-              onClick={() => deleteCard(card.id)}
-              className="absolute top-2 right-2 text-red-500 font-bold"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              onClick={addCard}
             >
-              ❌
+              Save
             </button>
           </div>
-        ))}
+        )}
+      </div>
+
+      {/* Cards Section */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+          {cards.map((card) => (
+            <div
+              key={card.id}
+              className="bg-green-200 p-4 rounded shadow relative flex flex-col justify-between h-52"
+            >
+              <button
+                onClick={() => deleteCard(card.id)}
+                className="absolute top-2 right-2 text-red-500 font-bold"
+              >
+                ❌
+              </button>
+              <div>
+                <h3 className="text-lg font-bold text-black">{card.title}</h3>
+                <p className="text-sm text-gray-600">{card.details}</p>
+              </div>
+              <div className="flex justify-between items-center mt-4 mx-10 ">
+              <span className="text-black text-6xl">{card.greenCount}</span>
+              <span className="text-black text-6xl">{card.redCount}</span>
+
+                </div>
+              <div className="flex justify-between items-center mt-4">
+                <div className="flex items-center space-x-2">
+                  
+                  <button
+                    onClick={() => incrementCount(card.id, "green")}
+                    className="bg-green-400 text-white px-3 py-1 rounded hover:bg-green-600 w-30 h-13"
+                  >
+                    ✅
+                  </button>
+                 
+                </div>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => incrementCount(card.id, "red")}
+                    className="bg-red-400 text-white px-3 py-1 rounded hover:bg-red-600 w-30 h-13"
+                  >
+                    ❌
+                  </button>
+                  
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    </>
   );
 }
